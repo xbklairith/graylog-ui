@@ -1,0 +1,57 @@
+{
+  "name": "graylog-ui",
+  "version": "1.0.0",
+  "description": "A minimal alternative graylog ui",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build-renderer && npm run build-app",
+    "build-app": "build",
+    "build-renderer": "cross-env NODE_ENV=production next build renderer && next export renderer",
+    "precommit": "lint-staged",
+    "test": "npm run test-lint",
+    "test-lint": "xo"
+  },
+  "build": {
+    "appId": "co.zeit.now",
+    "files": [
+      "**/*",
+      "!renderer",
+      "renderer/out"
+    ],
+    "win": {
+      "target": [
+        "squirrel"
+      ],
+      "icon": "main/static/icons/windows.ico"
+    },
+    "squirrelWindows": {
+      "loadingGif": "main/static/install-spinner.gif"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "main/static/icons/mac.icns",
+      "extendInfo": {
+        "LSUIElement": 1
+      }
+    }
+  },
+  "repository": "https://github.com/xbklairith/graylog-ui.git",
+  "keywords": [
+    "graylog",
+    "next.js",
+    "Electron",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^5.0.2"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
